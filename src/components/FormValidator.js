@@ -1,11 +1,10 @@
-class FormValidator {
+export  default class FormValidator {
   constructor(config, popupElement) {
     this._inputSelector = config.inputSelector;
     this._submitButtonSelector = config.submitButtonSelector;
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
-
     this._element = popupElement;
   }
 
@@ -19,7 +18,6 @@ class FormValidator {
 
   _showInputError(inputElement, errorMessage) {
     const errorElement = this._element.querySelector(`#${inputElement.id}-error`);
-
     inputElement.classList.add(this._inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._errorClass);
@@ -33,7 +31,7 @@ class FormValidator {
   }
 
   _toggleButtonState() {
-    if (this._getInvalidInput) {
+    if (this._getInvalidInput()) {
       this._buttonElement.classList.add(this._inactiveButtonClass);
       this._buttonElement.disabled = true;
     } else {
@@ -68,5 +66,3 @@ class FormValidator {
     this._setEventListeners();
   }
 }
-
-export default FormValidator;

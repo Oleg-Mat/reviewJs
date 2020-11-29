@@ -4,14 +4,14 @@
   "version": "0.0.1",
   "description": "Yandex.Praktikum canonical projects",
   "scripts": {
-    "hint": "htmlhint ./public/index.html",
-    "deploy": "gh-pages -d public"
+    "hint": "htmlhint src/index.html",
+    "deploy": "gh-pages -d src"
   },
   "repository": {
     "type": "git",
     "url": "git+https://gitlab.com/pcr-web/canonical_ru-en_sprint7.git"
   },
-  "author": "Andrey Strogov",
+  "author": "Oleg Matuanin",
   "license": "ISC",
   "bugs": {
     "url": "https://gitlab.com/pcr-web/canonical_ru-en_sprint7/issues"
