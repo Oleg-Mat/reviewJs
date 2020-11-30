@@ -3,6 +3,8 @@ import {KEYBOARD_KEYS} from "../utils/constants.js";
 export  default  class Popup {
     constructor(popupSelector) {
         this._popupElement = document.querySelector(popupSelector);
+        this._bindedHandleEscClose = this._handleEscClose.bind(this);
+        this._bindedHandlePopupClose = this._handlePopupCLose.bind(this);
     }
 
     open() {
@@ -11,12 +13,17 @@ export  default  class Popup {
     }
 
     close() {
+        this._removeEventListeners();
         this._popupElement.classList.remove('popup_is-opened');
     }
 
+    _removeEventListeners() {
+        document.removeEventListener('keyup',this._bindedHandleEscClose);
+        this._popupElement.removeEventListener('click',this._bindedHandlePopupClose);
+    }
     setEventListeners() {
-        document.addEventListener('keyup',(evt)=>this._handleEscClose(evt));
-        this._popupElement.addEventListener('click',(evt)=>this._handlePopupCLose(evt));
+        document.addEventListener('keyup',this._bindedHandleEscClose);
+        this._popupElement.addEventListener('click',this._bindedHandlePopupClose);
     }
 
     _handlePopupCLose (evt) {
